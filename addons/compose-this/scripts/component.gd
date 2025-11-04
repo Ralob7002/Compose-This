@@ -52,6 +52,11 @@ class_name Component
 
 #region Virtual Functions
 
+func _ready() -> void:
+	if not Engine.is_editor_hint():
+		if has_method("_component_ready"):
+			self["_component_ready"].call()
+
 func _enter_tree() -> void:
 	# Updates the Component's parent if it is reparented.
 	if parent and parent != get_parent():
@@ -75,7 +80,7 @@ func _enter_tree() -> void:
 
 	if Engine.is_editor_hint():
 		var component_name: String = get_script().get_global_name()
-		for child in self.get_parent().get_children():
+		for child: Node in self.get_parent().get_children():
 			if child != self and child.name == component_name:
 				queue_free()
 				push_error("The {comp} has already been added to {node}.".format({
@@ -118,6 +123,7 @@ func _on_component_ready() -> void:
 		if not Compose._parents_reference[default_name].has(parent):
 			Compose._parents_reference[default_name].append(parent)
 
+
 ## Called when the component exits the tree.
 func _on_component_tree_exited() -> void:
 	if not Engine.is_editor_hint():
@@ -133,6 +139,7 @@ func _on_component_tree_exited() -> void:
 				if connection.callable.get_object() == self:
 					parent[sig.name].disconnect(connection.callable)
 		parent.queue_redraw()
+
 
 ## Called when the component is renamed.
 func _on_component_renamed() -> void:

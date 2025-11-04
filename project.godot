@@ -24,6 +24,10 @@ Compose="*res://addons/compose-this/scripts/compose.gd"
 gdscript/warnings/untyped_declaration=1
 gdscript/warnings/inferred_declaration=1
 
+[display]
+
+window/stretch/mode="canvas_items"
+
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/compose-this/plugin.cfg")

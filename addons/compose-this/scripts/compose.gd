@@ -51,8 +51,23 @@ func add_component(node: Node, component: Variant) -> void:
 	if node.has_node(default_name):
 		node.get_node(default_name).free()
 
-	component.name = component.get_script().get_global_name()
+	component.name = default_name
 	node.add_child(component)
+
+
+## Adds a [Component] to the node only if it doesn't already have the component.
+## If a [ClassDB] is passed as the [param component] parameter,
+## it will be automatically instantiated. [br][br]
+## The [method Node.add_child] function cannot be used to add new components.
+## If used, they will be automatically released.
+func ensure_component(node: Node, component: Variant) -> void:
+	if component is GDScript:
+		component = component.new()
+
+	var default_name: String = component.get_script().get_global_name()
+	if not node.has_node(default_name):
+		component.name = default_name
+		node.add_child(component)
 
 
 ## Remove a specific [Component] from a node. The component to be removed,
