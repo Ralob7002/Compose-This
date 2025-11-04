@@ -28,7 +28,7 @@ The relationship between component and parent is flexible, meaning components ca
 Each parent can only have one type of the same component as a child. Components cannot have their names changed, as they always revert to the default name;
 furthermore, if a component is added to a parent that already has its type, it will be automatically released.
 
-Components cannot use the default `_ready()` function, as it will be called in the Editor. As an alternative, you should always use the `component_ready()` function, 
+Components cannot use the default `_ready()` function, as it will be called in the Editor. As an alternative, you should always use the `_component_ready()` function, 
 which works the same way but is not called in the Editor. If for some reason it is absolutely necessary to use the `_ready()` function, you should do it as follows:
 
 ```gdscript
