@@ -5,12 +5,6 @@
 Compose is an add-on for Godot that adds a simple composition system. Each component is a script that can add functionality to any node.
 The relationship between component and parent is flexible, meaning components can be disabled or removed from the parent at any time.
 
-## 🔗 References
-- [Installation](https://github.com/Ralob7002/Compose-This/edit/main/README.md#-installation)
-- [Core Concepts](https://github.com/Ralob7002/Compose-This/edit/main/README.md#%EF%B8%8F-core-concepts)
-- [Parent Query](https://github.com/Ralob7002/Compose-This/edit/main/README.md#-parent-query)
-- [Creating Component](https://github.com/Ralob7002/Compose-This/edit/main/README.md#%EF%B8%8F-creating-a-component)
-
 ## 🔽 Installation
 
 > [!TIP]
