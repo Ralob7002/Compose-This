@@ -46,8 +46,9 @@ func get_components_name(node: Node) -> Array[String]:
 func add_component(node: Node, component: Variant) -> void:
 	if component is GDScript:
 		component = component.new()
-
 	var default_name: String = component.get_script().get_global_name()
+	component.free()
+
 	if node.has_node(default_name):
 		node.get_node(default_name).free()
 
@@ -63,8 +64,9 @@ func add_component(node: Node, component: Variant) -> void:
 func ensure_component(node: Node, component: Variant) -> void:
 	if component is GDScript:
 		component = component.new()
-
 	var default_name: String = component.get_script().get_global_name()
+	component.free()
+
 	if not node.has_node(default_name):
 		component.name = default_name
 		node.add_child(component)
@@ -78,8 +80,9 @@ func ensure_component(node: Node, component: Variant) -> void:
 func remove_component(node: Node, component: Variant) -> void:
 	if component is GDScript:
 		component = component.new()
-
 	var default_name: String = component.get_script().get_global_name()
+	component.free()
+
 	if node.has_node(default_name):
 		node.get_node(default_name).queue_free()
 
@@ -90,7 +93,9 @@ func query_all(components: Array) -> Array:
 	var components_name: Array[String] = []
 	for comp in components:
 		if comp is GDScript:
-			components_name.append(comp.new().get_script().get_global_name())
+			var component = comp.new()
+			components_name.append(component.get_script().get_global_name())
+			component.free()
 		else:
 			components_name.append(comp)
 	components_name.sort()
@@ -121,7 +126,9 @@ func query_any(components: Array) -> Array:
 	var components_name: Array[String] = []
 	for comp in components:
 		if comp is GDScript:
-			components_name.append(comp.new().get_script().get_global_name())
+			var component = comp.new()
+			components_name.append(component.get_script().get_global_name())
+			component.free()
 		else:
 			components_name.append(comp)
 	components_name.sort()
